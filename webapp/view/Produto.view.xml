@@ -1,0 +1,70 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:uxap="sap.uxap" xmlns:layout="sap.ui.layout"
+	controllerName="ovly.moda.appcolecao.controller.Produto" xmlns:html="http://www.w3.org/1999/xhtml">
+	<uxap:ObjectPageLayout id="ObjectPageLayout" enableLazyLoading="false" showAnchorBarPopover="false" showFooter="true">
+		<uxap:headerTitle>
+			<uxap:ObjectPageHeader objectTitle="{ShortDesc}">
+				<uxap:actions>
+					<uxap:ObjectPageHeaderActionButton icon="sap-icon://nav-back" text="Voltar" press="onNavBack"/>
+					<uxap:ObjectPageHeaderActionButton icon="sap-icon://cart" text="" press="onCart" visible="{= ${Perfil>/Check}==='X' ? false:true }"/>
+				</uxap:actions>
+			</uxap:ObjectPageHeader>
+		</uxap:headerTitle>
+		<uxap:headerContent>
+			<ObjectAttribute title="" text="{ProductId}"/>
+			<!--<ObjectAttribute title="" text="{Price}"/>-->
+			<!--<ObjectAttribute title="" text="{CurrencyCode}"/>-->
+			<ObjectNumber
+				number="{ parts:[{path:'Price'},{path:'CurrencyCode'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+				unit="{CurrencyCode}"/>
+		</uxap:headerContent>
+		<uxap:sections>
+			<uxap:ObjectPageSection title="{i18n>produtosImages}">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection title="{i18n>produtosImages}">
+						<uxap:blocks>
+							<Carousel id="idCarousel" pages="{ToImagensProd}">
+								<pages>
+									<Image src="/sap/opu/odata/SAP/ZMNGW_COLECAO_MODA_SRV/ImagensProd(ProductId='{ProductId}',ImgNumber='{ImgNumber}')/$value" alt=""/>
+								</pages>
+							</Carousel>
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+					<uxap:ObjectPageSubSection title="{i18n>produtoDetails}">
+						<uxap:blocks>
+							<Label text="{LongDesc}"></Label>
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+			<uxap:ObjectPageSection title="{i18n>produtoUpdImage}" visible="{= ${Perfil>/Check}==='X' ? true:false }">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection title="">
+						<uxap:blocks>
+							<UploadCollection id="UploadCollection" items="{ToImagensProd}" uploadUrl="{viewProduto>/uploadUrl}" fileType="jpeg,jpg"
+								mimeType="image/jpeg" multiple="false" noDataText="Upload a file" noDataDescription="Upload a file" showSeparators="All"
+								mode="SingleSelectMaster" change="onChange" fileDeleted="onFileDeleted" uploadComplete="onUploadComplete"
+								beforeUploadStarts="onBeforeUploadStarts" uploadTerminated="onUploadTerminated">
+								<headerParameters>
+									<UploadCollectionParameter name="sendXHR" value="true"/>
+								</headerParameters>
+								<items>
+									<UploadCollectionItem documentId="{ImgNumber}" fileName="{ImgUrl}" mimeType="{Mimetype}"
+										thumbnailUrl="/sap/opu/odata/SAP/ZMNGW_COLECAO_MODA_SRV/ImagensProd(ProductId='{ProductId}',ImgNumber='{ImgNumber}')/$value"
+										url="/sap/opu/odata/SAP/ZMNGW_COLECAO_MODA_SRV/ImagensProd(ProductId='{ProductId}',ImgNumber='{ImgNumber}')/$value" enableDelete="true"
+										visibleDelete="true" enableEdit="false" visibleEdit="false"></UploadCollectionItem>
+								</items>
+							</UploadCollection>
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+		</uxap:sections>
+		<uxap:footer>
+			<Bar visible="{= ${Perfil>/Check}==='X' ? false:true }">
+				<contentRight>
+					<Button icon="sap-icon://cart-4" text="{i18n>produtoButtonAdd}" type="Emphasized" press="onAddCart"/>
+				</contentRight>
+			</Bar>
+		</uxap:footer>
+	</uxap:ObjectPageLayout>
+</mvc:View>

@@ -1,0 +1,36 @@
+{
+    "application": {
+        "id": "",
+        "title": "ovly.moda.appcolecao.appColecoesModa",
+        "description": "Crie um App Fiori do Zero",
+        "type": "SAP_UI5_Component",
+        "componentUrl": "/",
+        "appUrl": "#appColecoesModa-Display",
+        "navigationComponentName": "ovly.moda.appcolecao",
+        "intentSemanticObject": "appColecoesModa",
+        "intentAction": "Display",
+        "html5ApplicationName": "appcolecoes",
+        "HCPParentApplicationName": ""
+    },
+    "assignment": {
+        "groups": [
+            "28383149-33f0-4e3d-9d31-b531f918d7ff-1523929386060"
+        ],
+        "contentPackages": [
+            "8335cbfe-ea0d-4a1d-ae8a-cb34567288b9-1523929368346"
+        ],
+        "categories": []
+    },
+    "tile": {
+        "type": "DynamicTile",
+        "title": "Colecao de Moda",
+        "subtitle": "Crie um App Fiori do Zero",
+        "searchKeywords": "Colecao de Moda,Crie um App Fiori do Zero",
+        "displayIconUrl": "sap-icon://list",
+        "displayInfoText": "",
+        "size": "1x1",
+        "serviceURL": "/sap/fiori/appcolecoes/sap/opu/odata/sap/ZMNGW_COLECAO_MODA_SRV/ColecoesModa/$count",
+        "refreshInterval": 10,
+        "displayNumberUnit": "Colecoes"
+    }
+}

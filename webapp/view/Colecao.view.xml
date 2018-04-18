@@ -1,0 +1,62 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:html="http://www.w3.org/1999/xhtml" controllerName="ovly.moda.appcolecao.controller.Colecao">
+	<Page title="{i18n>worklistTitle}" showNavButton="false" navButtonPress="onNavButton">
+		<content>
+			<VBox>
+				<f:Form id="FormColecao" editable="true">
+					<f:title>
+						<core:Title text="{viewColecao>/textTitle}"/>
+					</f:title>
+					<f:layout>
+						<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4"
+							emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+					</f:layout>
+					<f:formContainers>
+						<f:FormContainer>
+							<f:formElements>
+								<f:FormElement label="ID coleção" visible="false">
+									<f:fields>
+										<Input name="IdColecao" value="{path: 'IdColecao', type: 'sap.ui.model.odata.type.String'}" id="colecaoID" maxLength="20" visible="false"
+											valueLiveUpdate="true"/>
+									</f:fields>
+								</f:FormElement>
+								<f:FormElement label="{i18n>colecaoLabelName}">
+									<f:fields>
+										<Input name="Colecao" value="{path: 'Colecao', type: 'sap.ui.model.odata.type.String'}" id="colecaoNome" maxLength="20"
+											valueLiveUpdate="true"/>
+									</f:fields>
+								</f:FormElement>
+								<f:FormElement label="{i18n>colecaoLabelDesc}">
+									<f:fields>
+										<Input name="ColecaoDesc" value="{path: 'ColecaoDesc', type: 'sap.ui.model.odata.type.String'}" id="colecaoDesc" maxLength="200"
+											valueLiveUpdate="true"/>
+									</f:fields>
+								</f:FormElement>
+								<f:FormElement label="{i18n>colecaoLabelBEGDA}">
+									<f:fields>
+										<DatePicker name="DataIni" id="dataIni" placeholder="dd/mm/aaaa"
+											value="{path: 'DataIni', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd/MM/yyyy', UTC: true}}"/>
+									</f:fields>
+								</f:FormElement>
+								<f:FormElement label="{i18n>colecaoLabelENDDA}">
+									<f:fields>
+										<DatePicker name="DataFim" id="dataFim" placeholder="dd/mm/aaaa"
+											value="{path: 'DataFim', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd/MM/yyyy', UTC: true}}"/>
+									</f:fields>
+								</f:FormElement>
+							</f:formElements>
+						</f:FormContainer>
+					</f:formContainers>
+				</f:Form>
+			</VBox>
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button icon="sap-icon://save" text="{i18n>colecaoButtonSave}" type="Accept" press="onSave"/>
+				<Button icon="sap-icon://delete" text="{i18n>colecaoButtonDelete}" type="Emphasized" visible="{viewColecao>/edicao}" press="onDelete"/>
+				<Button icon="sap-icon://sys-cancel-2" text="{i18n>colecaoButtonCancel}" type="Reject" press="onCancel"/>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

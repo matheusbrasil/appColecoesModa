@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog noDataText="No Products Found" title="Select Product" search="handleSearch" confirm="handleClose" cancel="handleClose"
+		items="{ path: '/SHProdutos' }">
+		<StandardListItem icon="/sap/opu/odata/SAP/ZMNGW_COLECAO_MODA_SRV/ImagensProd(ProductId='{ProductId}',ImgNumber='0000')/$value" title="{ProductId}" description="{Text}" type="Active"/>
+	</SelectDialog>
+</core:FragmentDefinition>

@@ -1,0 +1,161 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="S1" xml:lang="pt" sap:schema-version="1 ">
+			<EntityType Name="CarrinhoItem" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="ProductId"/>
+				</Key>
+				<Property Name="ProductId" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Product ID" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Quantity" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:label="Quantity" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="QuantityUnit" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Qty. Unit" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+			</EntityType>
+			<EntityType Name="CarrinhoHeader" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="BuyerId"/>
+				</Key>
+				<Property Name="BuyerId" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Bus. Part. ID" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="CurrencyCode" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Currency" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+				<NavigationProperty Name="ToCarrinhoItem" Relationship="S1.CarrinhoHeader_CarrinhoItem" FromRole="FromRole_CarrinhoHeader_CarrinhoItem"
+					ToRole="ToRole_CarrinhoHeader_CarrinhoItem"/>
+			</EntityType>
+			<EntityType Name="SHProduto" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="ProductId"/>
+				</Key>
+				<Property Name="ProductId" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Product ID" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Text" Type="Edm.String" Nullable="false" MaxLength="255" sap:label="Description" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+			</EntityType>
+			<EntityType Name="autorizacao" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="Uname"/>
+				</Key>
+				<Property Name="Uname" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Nome do usuário" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Check" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Campo de seleção" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+			</EntityType>
+			<EntityType Name="ColecaoModa" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="IdColecao"/>
+				</Key>
+				<Property Name="IdColecao" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Código de coleção" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="DataFim" Type="Edm.DateTime" Precision="0" sap:label="Válido até" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="DataIni" Type="Edm.DateTime" Precision="0" sap:label="Vál.desde" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Colecao" Type="Edm.String" MaxLength="20" sap:label="ID da Coleção" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ColecaoDesc" Type="Edm.String" MaxLength="200" sap:label="Descrição da Coleção" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="CountColecao" Type="Edm.Byte" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+				<NavigationProperty Name="ToProdutos" Relationship="S1.Colecao_Produto" FromRole="FromRole_Colecao_Produto" ToRole="ToRole_Colecao_Produto"/>
+			</EntityType>
+			<EntityType Name="Produto" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="ProductId"/>
+				</Key>
+				<Property Name="ProductId" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Product ID" sap:sortable="false"
+					sap:filterable="false"/>
+				<Property Name="Category" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Prod. Cat." sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="IdColecao" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Código de coleção" sap:sortable="false"/>
+				<Property Name="MeasureUnit" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Qty. Unit" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+				<Property Name="Price" Type="Edm.Decimal" Nullable="false" Precision="16" Scale="3" sap:unit="CurrencyCode" sap:label="Unit Price"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="CurrencyCode" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Currency" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+				<Property Name="ShortDesc" Type="Edm.String" Nullable="false" MaxLength="255" sap:label="Description" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="LongDesc" Type="Edm.String" Nullable="false" MaxLength="255" sap:label="Description" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<NavigationProperty Name="ToImagensProd" Relationship="S1.Produto_ImagemProd" FromRole="FromRole_Produto_ImagemProd"
+					ToRole="ToRole_Produto_ImagemProd"/>
+			</EntityType>
+			<EntityType Name="ImagemProd" m:HasStream="true" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="ProductId"/>
+					<PropertyRef Name="ImgNumber"/>
+				</Key>
+				<Property Name="ProductId" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Product ID" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ImgNumber" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Contador" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ImgUrl" Type="Edm.String" Nullable="false" MaxLength="255" sap:label="Pic URL" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Value" Type="Edm.Binary" Nullable="false" sap:label="cadeia binária" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Mimetype" Type="Edm.String" Nullable="false" MaxLength="100" sap:label="Caractere 100" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+			</EntityType>
+			<Association Name="Colecao_Produto" sap:content-version="1">
+				<End Type="S1.ColecaoModa" Multiplicity="1" Role="FromRole_Colecao_Produto"/>
+				<End Type="S1.Produto" Multiplicity="*" Role="ToRole_Colecao_Produto"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_Colecao_Produto">
+						<PropertyRef Name="IdColecao"/>
+					</Principal>
+					<Dependent Role="ToRole_Colecao_Produto">
+						<PropertyRef Name="IdColecao"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="CarrinhoHeader_CarrinhoItem" sap:content-version="1">
+				<End Type="S1.CarrinhoHeader" Multiplicity="1" Role="FromRole_CarrinhoHeader_CarrinhoItem"/>
+				<End Type="S1.CarrinhoItem" Multiplicity="*" Role="ToRole_CarrinhoHeader_CarrinhoItem"/>
+			</Association>
+			<Association Name="Produto_ImagemProd" sap:content-version="1">
+				<End Type="S1.Produto" Multiplicity="1" Role="FromRole_Produto_ImagemProd"/>
+				<End Type="S1.ImagemProd" Multiplicity="*" Role="ToRole_Produto_ImagemProd"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_Produto_ImagemProd">
+						<PropertyRef Name="ProductId"/>
+					</Principal>
+					<Dependent Role="ToRole_Produto_ImagemProd">
+						<PropertyRef Name="ProductId"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="S1_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+				<EntitySet Name="CarrinhoItens" EntityType="S1.CarrinhoItem" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+					sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="CarrinhoHeaderSet" EntityType="S1.CarrinhoHeader" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+					sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="SHProdutos" EntityType="S1.SHProduto" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+					sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="autorizacaoCollection" EntityType="S1.autorizacao" sap:content-version="1"/>
+				<EntitySet Name="ColecoesModa" EntityType="S1.ColecaoModa" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+					sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="Produtos" EntityType="S1.Produto" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false"
+					sap:content-version="1"/>
+				<EntitySet Name="ImagensProd" EntityType="S1.ImagemProd" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+					sap:pageable="false" sap:content-version="1"/>
+				<AssociationSet Name="Produtos_ImagensProd" Association="S1.Produto_ImagemProd" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1">
+					<End EntitySet="Produtos" Role="FromRole_Produto_ImagemProd"/>
+					<End EntitySet="ImagensProd" Role="ToRole_Produto_ImagemProd"/>
+				</AssociationSet>
+				<AssociationSet Name="CarrinhoHeader_CarrinhoItem_AssocSet" Association="S1.CarrinhoHeader_CarrinhoItem" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1">
+					<End EntitySet="CarrinhoHeaderSet" Role="FromRole_CarrinhoHeader_CarrinhoItem"/>
+					<End EntitySet="CarrinhoItens" Role="ToRole_CarrinhoHeader_CarrinhoItem"/>
+				</AssociationSet>
+				<AssociationSet Name="Colecoes_Produtos" Association="S1.Colecao_Produto" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+					sap:content-version="1">
+					<End EntitySet="ColecoesModa" Role="FromRole_Colecao_Produto"/>
+					<End EntitySet="Produtos" Role="ToRole_Colecao_Produto"/>
+				</AssociationSet>
+				<FunctionImport Name="checkautorization" ReturnType="S1.autorizacao" EntitySet="autorizacaoCollection" m:HttpMethod="GET"
+					sap:action-for="S1.autorizacao"/>
+			</EntityContainer>
+			<atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZMNGW_COLECAO_MODA_SRV/$metadata"/>
+			<atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZMNGW_COLECAO_MODA_SRV/$metadata"/>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

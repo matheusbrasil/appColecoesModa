@@ -1,0 +1,29 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc"
+	controllerName="ovly.moda.appcolecao.controller.Worklist">
+	<Page title="{i18n>worklistTitle}">
+		<subHeader>
+			<Toolbar>
+				<SearchField liveChange="onSearch" width="100%"/>
+			</Toolbar>
+		</subHeader>
+		<content>
+			<List noDataText="Drop list items here" id="listColecaoModa"
+				items="{ path: '/ColecoesModa', sorter: { path: 'Colecao', descending: false } }" mode="{= ${Perfil>/Check}==='X' ? 'Delete':'None' }"
+				delete="onDelete">
+				<items>
+					<StandardListItem id="itemColecaoModa" counter="{CountColecao}" icon="sap-icon://list" type="Navigation" title="{Colecao}"
+						description="{ColecaoDesc}" press="onClick"/>
+				</items>
+			</List>
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<!--<Button icon="sap-icon://add" visible="{ path:'/Check', model:'Perfil', formatter:'.formataPerfil' }" text="Nova Coleção" type="Accept" press="onNovaColecao"/>-->
+				<Button id="idNewColl" icon="sap-icon://add" visible="{= ${Perfil>/Check}==='X' ? true:false }" text="{i18n>buttonNewColl}" type="Accept"
+					press="onNovaColecao"/>
+				<Button icon="sap-icon://cart" type="Default" press="onCart" visible="{= ${Perfil>/Check}==='X' ? false:true }"/>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>
