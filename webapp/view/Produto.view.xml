@@ -11,8 +11,6 @@
 		</uxap:headerTitle>
 		<uxap:headerContent>
 			<ObjectAttribute title="" text="{ProductId}"/>
-			<!--<ObjectAttribute title="" text="{Price}"/>-->
-			<!--<ObjectAttribute title="" text="{CurrencyCode}"/>-->
 			<ObjectNumber
 				number="{ parts:[{path:'Price'},{path:'CurrencyCode'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
 				unit="{CurrencyCode}"/>
@@ -24,7 +22,8 @@
 						<uxap:blocks>
 							<Carousel id="idCarousel" pages="{ToImagensProd}">
 								<pages>
-									<Image src="/sap/opu/odata/SAP/ZMNGW_COLECAO_MODA_SRV/ImagensProd(ProductId='{ProductId}',ImgNumber='{ImgNumber}')/$value" alt=""/>
+									<Image src="/sap/opu/odata/SAP/ZMNGW_COLECAO_MODA_SRV/ImagensProd(ProductId='{ProductId}',ImgNumber='{ImgNumber}')/$value" height="auto"
+										width="auto" alt="{ImgUrl}"/>
 								</pages>
 							</Carousel>
 						</uxap:blocks>

@@ -1,3 +1,4 @@
+/* global elevateZoom:true */
 sap.ui.define([
 	"ovly/moda/appcolecao/controller/BaseController",
 	"sap/ui/model/json/JSONModel",
@@ -42,7 +43,6 @@ sap.ui.define([
 					sNew = false;
 					aItems[iIndex].Quantity++;
 					aItems[iIndex].TotalPrice = parseFloat(aItems[iIndex].Price * aItems[iIndex].Quantity);
-					//sap.m.MessageToast.show("Produto " + aItems[iIndex].ShortDesc + " adicionado. Quantidade: " + aItems[iIndex].Quantity);
 					sap.m.MessageToast.show(oBundle.getText("produtoMsgAdd", [aItems[iIndex].ShortDesc, aItems[iIndex].Quantity]));
 					break;
 
@@ -61,7 +61,6 @@ sap.ui.define([
 					TotalPrice: parseFloat(this.getView().getBindingContext().getProperty("Price")),
 					CurrencyCode: this.getView().getBindingContext().getProperty("CurrencyCode")
 				});
-				//sap.m.MessageToast.show("Produto " + this.getView().getBindingContext().getProperty("ShortDesc") + " adicionado. Quantidade: 1");
 				sap.m.MessageToast.show(oBundle.getText("produtoMsgAdd", [this.getView().getBindingContext().getProperty("ShortDesc"), 1]));
 			}
 
@@ -85,9 +84,9 @@ sap.ui.define([
 
 		_onObjectMatched: function(oEvent) {
 			var oViewProduto = this.getModel("viewProduto");
-			oViewProduto.setProperty("/uploadUrl", "/sap/opu/odata/SAP/ZMNGW_COLECAO_MODA_SRV/Produtos('" + oEvent.getParameter("arguments")
-				.produtoId +
+			oViewProduto.setProperty("/uploadUrl", "/sap/opu/odata/SAP/ZMNGW_COLECAO_MODA_SRV/Produtos('" + oEvent.getParameter("arguments").produtoId +
 				"')/ToImagensProd");
+
 			this.getView().bindElement({
 				path: "/Produtos('" + oEvent.getParameter("arguments").produtoId + "')"
 			});
@@ -97,7 +96,6 @@ sap.ui.define([
 			// read msg from i18n model
 			var oBundle = this.getView().getModel("i18n").getResourceBundle();
 
-			//this.getView().getModel().refresh();
 			this.byId("UploadCollection").getBinding("items").refresh();
 			this.byId("idCarousel").getBinding("pages").refresh();
 
@@ -115,7 +113,6 @@ sap.ui.define([
 				value: oEvent.getParameter("fileName")
 			});
 			oEvent.getParameters().addHeaderParameter(oCustomerHeaderSlug);
-			//sap.m.MessageToast.show("BeforeUploadStarts event triggered.");
 		},
 
 		onUploadTerminated: function() {
@@ -151,15 +148,10 @@ sap.ui.define([
 			oModel.remove("/ImagensProd(ProductId='" + oCtx.getProperty("ProductId") + "',ImgNumber='" + oEvent.getParameter("documentId") +
 				"')/$value", {
 					success: function(oData, response) {
-						//this.getView().getModel().refresh();
-						this.byId("idTable").getBinding("items").refresh();
-						this.byId("idCarousel").getBinding("pages").refresh();
 						sap.m.MessageToast.show(oBundle.getText("produtoMsgFileDel"));
 					}.bind(this),
 					error: function(oError) {}
 				});
-
-			//sap.m.MessageToast.show("FileDeleted event triggered. " + oEvent.getParameter("documentId"));
 		},
 
 		onNavBack: function(oEvent) {

@@ -19,7 +19,6 @@
 		<footer>
 			<Toolbar>
 				<ToolbarSpacer/>
-				<!--<Button icon="sap-icon://add" visible="{ path:'/Check', model:'Perfil', formatter:'.formataPerfil' }" text="Nova Coleção" type="Accept" press="onNovaColecao"/>-->
 				<Button id="idNewColl" icon="sap-icon://add" visible="{= ${Perfil>/Check}==='X' ? true:false }" text="{i18n>buttonNewColl}" type="Accept"
 					press="onNovaColecao"/>
 				<Button icon="sap-icon://cart" type="Default" press="onCart" visible="{= ${Perfil>/Check}==='X' ? false:true }"/>
