@@ -24,6 +24,7 @@ sap.ui.define([
 			this.getView().bindElement({
 				path: "/ColecoesModa('" + oEvent.getParameter("arguments").colecaoId + "')"
 			});
+
 		},
 
 		onCart: function(oEvent) {
@@ -66,17 +67,14 @@ sap.ui.define([
 			var sTitDelete = oBundle.getText("produtosTitDelete");
 			var sMsgDeleteS = oBundle.getText("produtosMsgDeleteS");
 
-			//sap.m.MessageBox.confirm("Are you sure you want to delete product " + oContext.getProperty("ShortDesc") + " ?", {
 			sap.m.MessageBox.confirm(sMsgDelete, {
 				title: sTitDelete,
 				initialFocus: sap.m.MessageBox.Action.CANCEL,
 				onClose: function(oAction) {
 					if (oAction === "OK") {
-						//oModel.remove("/Produtos('" + oContext.getProperty("ProductId") + "')", {
 						oModel.remove(oContext.getPath(), {
 							success: function(oData, response) {
 								sap.m.MessageToast.show(sMsgDeleteS);
-								//this.getOwnerComponent().getRouter().navTo("worklist");
 							}.bind(this),
 							error: function(oError) {}
 						});
@@ -144,9 +142,6 @@ sap.ui.define([
 
 				oModel.create("/Produtos", oProduto, {
 					success: function(oData, response) {
-						// this.getOwnerComponent().getRouter().navTo("produtos", {
-						// 	colecaoId: this.getView().getBindingContext().getProperty("IdColecao")
-						// }, true);
 					}.bind(this),
 					error: function(oError) {}
 				});

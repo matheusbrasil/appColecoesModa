@@ -16,7 +16,6 @@ sap.ui.define([
 		 * @memberOf ovly.moda.appcolecao.view.Cart
 		 */
 		onInit: function() {
-			//this.byId("idTable").getBinding("items").refresh();
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 
 			this._oViewModel = new JSONModel({
@@ -49,7 +48,6 @@ sap.ui.define([
 
 			oCarrinho.setProperty("/Items", aItems);
 			this._calculaTotal();
-			//this.byId("idTable").getBinding("items").refresh();
 
 		},
 
@@ -79,8 +77,6 @@ sap.ui.define([
 			}
 			oCarrinho.setProperty("/Items", aItems);
 			this._calculaTotal();
-			//this.getView().getModel().refresh();
-			//this.byId("idTable").getBinding("items").refresh();
 
 		},
 
@@ -123,8 +119,8 @@ sap.ui.define([
 						oModel.create("/CarrinhoHeaderSet", oDeepInsert, {
 							success: function(oData, response) {
 								setTimeout(function() {
-									sap.m.MessageToast.show(oBundle.getText("cartMsgBuyS"));
-								}, 1500);
+									sap.m.MessageToast.show(oBundle.getText("cartMsgBuyS", [oData.Id]));
+								}, 1000);
 
 								this.getModel("Carrinho").setData(itensCarrinho);
 								this.getOwnerComponent().getRouter().navTo("worklist", {}, true);
@@ -145,20 +141,6 @@ sap.ui.define([
 			if (aItems.length > 0) {
 				this._oViewModel.setProperty("/enableCreate", true);
 			}
-
-			//this.getView().setModel(oCarrinho);
-			//this.getView().getModel().refresh();
-
-			//var oContexto = oCarrinho.getContext("/");
-			//this.getView().setBindingContext(oContexto, "Carrinho");
-
-			//BINDING NO CONTROLE TABLE
-			// var oTable = this.byId("idTable");
-			// var oTemplate = this.byId("idColumnListItem");
-			// oTable.setModel(oCarrinho);
-			// oTable.bindItems("/Items", oTemplate);
-			//oTable.bindAggregation("items", {});
-			//oTable.bindAggregation("columns", {});
 
 		},
 

@@ -1,16 +1,8 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="ovly.moda.appcolecao.controller.Cart"
 	xmlns:html="http://www.w3.org/1999/xhtml">
 	<Page title="{i18n>cartViewTitle}" showNavButton="true" navButtonPress="onNavBack">
-		<!--<ObjectHeader title="Total da compra" intro="" number="{Carrinho>/Header/totalValue}" numberUnit="{Carrinho>/Header/CurrencyCode}"-->
-		<!--	icon="sap-icon://credit-card">-->
 		<ObjectHeader title="{i18n>cartTitle}" intro="" number="{ path:'Carrinho>/Header/totalValue', formatter:'.formataValor' }"
 			numberUnit="{Carrinho>/Header/CurrencyCode}" icon="sap-icon://credit-card">
-			<!--<statuses>-->
-			<!--	<ObjectStatus text="Produtos" state="Success"/>-->
-			<!--</statuses>-->
-			<!--<attributes>-->
-			<!--	<ObjectAttribute text="texto"/>-->
-			<!--</attributes>-->
 		</ObjectHeader>
 		<content>
 			<Table id="idTable" inset="false" items="{Carrinho>/Items}" headerText="Itens" footerText="" mode="Delete" width="100%"

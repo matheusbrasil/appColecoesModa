@@ -35,11 +35,6 @@ sap.ui.define([
 			this.getOwnerComponent().getRouter().navTo("carrinho");
 		},
 
-		// onNavButton: function(oEvent) {
-		// 	// var btnHome = sap.ui.getCore().byId("homeBtn");
-		// 	// btnHome.onclick();
-		// },
-
 		onNovaColecao: function() {
 			this.getRouter().navTo("colecao");
 		},
@@ -55,18 +50,15 @@ sap.ui.define([
 			var sTitDelete = oBundle.getText("worklistTitDelete");
 			var sMsgDeleteS = oBundle.getText("worklistMsgDeleteS");
 
-			//sap.m.MessageBox.confirm("Are you sure you want to delete collection " + oContext.getProperty("Colecao") + " ?", {
 			sap.m.MessageBox.confirm(sMsgDelete, {
 				title: sTitDelete,
 				initialFocus: sap.m.MessageBox.Action.CANCEL,
 				onClose: function(oAction) {
 					if (oAction === "OK") {
 
-						// oModel.remove("/ColecoesModa('" + oContext.getProperty("IdColecao") + "')", {
 						oModel.remove(oContext.getPath(), {
 							success: function(oData, response) {
 								sap.m.MessageToast.show(sMsgDeleteS);
-								//this.getOwnerComponent().getRouter().navTo("worklist");
 							}.bind(this),
 							error: function(oError) {}
 						});

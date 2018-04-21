@@ -21,6 +21,7 @@
 					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
 				<Property Name="CurrencyCode" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Currency" sap:creatable="false"
 					sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+				<Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="10" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
 				<NavigationProperty Name="ToCarrinhoItem" Relationship="S1.CarrinhoHeader_CarrinhoItem" FromRole="FromRole_CarrinhoHeader_CarrinhoItem"
 					ToRole="ToRole_CarrinhoHeader_CarrinhoItem"/>
 			</EntityType>

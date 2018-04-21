@@ -35,18 +35,6 @@ sap.ui.define([
 			var oViewModel = this.getModel("viewColecao");
 			var oModel = this.getModel();
 			var oBundle = this.getView().getModel("i18n").getResourceBundle();
-			// var vColecaoNome = this.byId("colecaoNome");
-			// var vColecaoDesc = this.byId("colecaoDesc");
-			// var vDataIni = this.byId("dataIni");
-			// var vDataFim = this.byId("dataFim");
-
-			// var oColecao = {
-			// 	IdColecao: "",
-			// 	DataFim: this.byId("dataFim").getDateValue(),
-			// 	DataIni: this.byId("dataIni").getDateValue(),
-			// 	Colecao: this.byId("colecaoNome").getValue(),
-			// 	ColecaoDesc: this.byId("colecaoDesc").getValue()
-			// };
 
 			if (oViewModel.getProperty("/edicao")) {
 				sap.m.MessageBox.confirm(oBundle.getText("colecaoMsgSaveC"), {
@@ -75,14 +63,6 @@ sap.ui.define([
 					initialFocus: sap.m.MessageBox.Action.CANCEL,
 					onClose: function(oAction) {
 						if (oAction === "OK") {
-							// oModel.create("/ColecoesModa", oColecao, {
-							// 	success: function(oData, response) {
-							// 		this.getOwnerComponent().getRouter().navTo("produtos", {
-							// 			colecaoId: oData.IdColecao
-							// 		});
-							// 	}.bind(this),
-							// 	error: function(oError) {}
-							// });
 
 							oModel.submitChanges({
 								success: function(oData, response) {
@@ -137,7 +117,6 @@ sap.ui.define([
 				initialFocus: sap.m.MessageBox.Action.CANCEL,
 				onClose: function(oAction) {
 					if (oAction === "OK") {
-						//oModel.remove("/ColecoesModa('" + this.getView().getBindingContext().getProperty("IdColecao") + "')", {
 						oModel.remove(oCtx.getPath(), {
 							success: function(oData, response) {
 								this.getOwnerComponent().getRouter().navTo("worklist");

@@ -2,12 +2,6 @@
 	controllerName="ovly.moda.appcolecao.controller.Produtos">
 	<Page title="{i18n>produtosTitle}" showNavButton="true" navButtonPress="onNavButton">
 		<ObjectHeader title="{ColecaoDesc}" intro="{Colecao}" number="" icon="sap-icon://list" responsive="true">
-			<statuses>
-				<!--<ObjectStatus text="Produtos" state="Success"/>-->
-			</statuses>
-			<attributes>
-				<!--<ObjectAttribute text="texto"/>-->
-			</attributes>
 		</ObjectHeader>
 		<subHeader/>
 		<Toolbar visible="{= ${Perfil>/Check}==='X' ? true:false }">
